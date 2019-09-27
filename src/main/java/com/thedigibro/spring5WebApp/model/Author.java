@@ -2,6 +2,7 @@ package com.thedigibro.spring5WebApp.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 
@@ -15,31 +16,41 @@ public class Author {
     private String lastName;
 
     @ManyToMany(mappedBy = "authors")
-    private Set<Book> books=new HashSet<>();
+    private Set<Book> books = new HashSet<>();
 
-    public Author(){}
+    public Author() {
+    }
+
     public Author(String firstName, String lastName) {
-        this.lastName=lastName;
-        this.firstName=firstName;
+        this.lastName = lastName;
+        this.firstName = firstName;
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getFirstName(){return firstName;}
-    public void setFirstName(String firstName){this.firstName=firstName;}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-    public String getLastName(){return lastName;}
-    public void setLastName(String lastName){this.lastName=lastName;}
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     public Set<Book> getBooks() {
         return books;
     }
+
     public void setBooks(Set<Book> books) {
         this.books = books;
     }
@@ -50,7 +61,17 @@ public class Author {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
     public String toString() {
-        return super.toString();
+        return "Author{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", books=" + books +
+                '}';
     }
 }

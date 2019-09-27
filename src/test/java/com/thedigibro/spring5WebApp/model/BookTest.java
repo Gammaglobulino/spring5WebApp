@@ -7,10 +7,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BookTest {
     Book book;
+    Publisher hc;
 
     @BeforeEach
     void setUp() {
-        book=new Book("Story of Andrea","102304040433","Andrea inc");
+        book=new Book("Story of Andrea","102304040433",hc);
+        hc= new Publisher("Harper Collins","My street");
     }
 
     @Test
